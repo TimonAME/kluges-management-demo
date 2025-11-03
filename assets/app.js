@@ -12,11 +12,12 @@ import "./styles/app.css";
 import "./styles/calendar.css";
 
 // start the Stimulus application
-import "./bootstrap";
+//import "./bootstrap";
 
 // enable the interactive UI components from Flowbite
 //import "flowbite";
-
+/*
 registerVueControllerComponents(
     require.context("./vue/controllers", true, /\.vue$/),
 );
+*/
