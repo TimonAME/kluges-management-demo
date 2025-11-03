@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tipps{% endblock %}
+
+{% block pageTitle %}Tipps{% endblock %}
+
+{% block body %}
+    <div {{ vue_component('Tipps', { 'tipps' : tipps, 'role' : app.user.roles[0] is defined ? app.user.roles[0] : null }) }}></div>
+{% endblock %}

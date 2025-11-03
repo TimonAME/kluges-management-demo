@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Benachrichtigungen{% endblock %}
+
+{% block pageTitle %}Benachrichtigungen{% endblock %}
+
+{% block body %}
+    <div {{ vue_component('Notifications', { 'notifications' : notifications, 'role' : app.user.roles[0] is defined ? app.user.roles[0] : null, 'allTags' : allTags }) }}></div>
+{% endblock %}

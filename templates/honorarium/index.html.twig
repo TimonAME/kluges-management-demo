@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Honorarium index{% endblock %}
+
+{% block body %}
+    <h1>Honorarium index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Amount</th>
+                <th>Issued_date</th>
+                <th>Is_paid</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for honorarium in honoraria %}
+            <tr>
+                <td>{{ honorarium.id }}</td>
+                <td>{{ honorarium.amount }}</td>
+                <td>{{ honorarium.issuedDate ? honorarium.issuedDate|date('Y-m-d') : '' }}</td>
+                <td>{{ honorarium.isPaid ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_honorarium_show', {'id': honorarium.id}) }}">show</a>
+                    <a href="{{ path('app_honorarium_edit', {'id': honorarium.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_honorarium_new') }}">Create new</a>
+{% endblock %}

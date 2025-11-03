@@ -1,0 +1,18 @@
+{# templates/user/deletion_error.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Fehler bei der Account-Löschung{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <div class="text-center">
+        <h1 class="text-2xl font-bold text-error_text mb-4">Fehler</h1>
+        <div class="bg-red-100 text-red-800 p-4 rounded mb-4">
+            {{ message }}
+        </div>
+        <a href="{{ path('app_home') }}" class="bg-main text-white py-2 px-4 rounded hover:bg-purple-700">
+            Zurück zur Startseite
+        </a>
+    </div>
+</div>
+{% endblock %}

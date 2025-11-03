@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit IllnessReport{% endblock %}
+
+{% block body %}
+    <h1>Edit IllnessReport</h1>
+
+    {{ include('illness_report/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_illness_report_index') }}">back to list</a>
+
+    {{ include('illness_report/_delete_form.html.twig') }}
+{% endblock %}

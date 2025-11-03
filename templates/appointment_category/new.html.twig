@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New AppointmentCategory{% endblock %}
+
+{% block body %}
+    <h1>Create new AppointmentCategory</h1>
+
+    {{ include('appointment_category/_form.html.twig') }}
+
+    <a href="{{ path('app_appointment_category_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,35 @@
+FROM ubuntu/nginx
+
+RUN apt-get update -y && apt-get install -y zip unzip
+RUN apt-get install supervisor nano -y
+RUN apt-get install php8.2 php-fpm php-cli php-cgi php-sqlite3 sqlite3 php-pdo php-mysql curl php-xml -y
+RUN cd ~
+RUN curl -sS https://getcomposer.org/installer -o composer-setup.php
+RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+
+RUN apt-get update
+RUN apt-get install nodejs -y
+RUN apt-get install npm --fix-missing -y
+
+WORKDIR /var/www/project/
+COPY . /var/www/project/
+COPY .env.prod /var/www/project/.env
+COPY nginx.conf /etc/nginx/sites-available/default
+
+RUN composer install 
+# --no-dev --optimize-autoloader -n
+RUN npm install
+RUN npm run build
+
+RUN php bin/console doctrine:migrations:migrate --env=prod --no-interaction
+
+RUN rm -r .git
+RUN rm Dockerfile
+RUN rm Dockerfile.dev
+
+# Set up Supervisor to manage both Nginx and PHP-FPM
+RUN mkdir -p /etc/supervisor/conf.d
+COPY ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# Start Nginx and PHP-FPM via Supervisor
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

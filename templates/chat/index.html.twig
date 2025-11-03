@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Chat{% endblock %}
+
+{% block pageTitle %}Chat{% endblock %}
+
+{% block body %}
+    <div {{ vue_component('Chat', { 'conversations' : conversations, 'chatID' : conversation|default(null), 'otherUser' : otherUser|default(null), 'currentUserId' : currentUserId|default(null), 'messages' : messages|default(null) }) }}></div>
+{% endblock %}

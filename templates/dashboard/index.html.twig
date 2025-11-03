@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block pageTitle %}Dashboard{% endblock %}
+
+{% block body %}
+    <div {{ vue_component('Dashboard', { 'todos' : todos , 'notifications' : notifications, 'birthdays': birthdays, 'exams': exams, 'role' : app.user.roles[0] is defined ? app.user.roles[0] : null}) }}></div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{# templates/user/deletion_success.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Account Deletion Successful{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <div class="text-center">
+        <h1 class="text-2xl font-bold text-second_accent mb-4">Account erfolgreich gelöscht</h1>
+        <div class="bg-green-100 text-green-800 p-4 rounded mb-4">
+            Ihr Account wurde erfolgreich anonymisiert. Alle personenbezogenen Daten wurden gelöscht.
+        </div>
+        <a href="{{ path('app_home') }}" class="bg-main text-white py-2 px-4 rounded hover:bg-purple-700">
+            Zurück zur Startseite
+        </a>
+    </div>
+</div>
+{% endblock %}

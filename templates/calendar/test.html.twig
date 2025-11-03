@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block pageTitle %}
+    Kalender
+    <span class="text-2xl"> - </span>
+    <span id="monthTitle" class="text-2xl"></span>
+{% endblock %}
+
+{% block body %}
+    <div id="calendar-container" {{ vue_component('Calendar', { 'name': app.user.getFirstName ~ ' ' ~ app.user.getLastName, 'id': app.user.getId }) }}></div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Funktion zum Aktualisieren des Monats-Titels aus der URL
+            function updateMonthTitle() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const dateParam = urlParams.get('date');
+                
+                if (dateParam) {
+                    document.getElementById('monthTitle').textContent = dateParam;
+                } else {
+                    // Wenn kein date-Parameter vorhanden ist, warten wir kurz und versuchen es erneut
+                    setTimeout(updateMonthTitle, 100);
+                }
+            }
+            
+            // Initial den Titel aktualisieren
+            updateMonthTitle();
+            
+            // MutationObserver einrichten, um URL-Änderungen zu überwachen
+            const urlObserver = new MutationObserver(function(mutations) {
+                updateMonthTitle();
+            });
+            
+            // Beobachte den Kalender-Container auf Änderungen
+            const calendarContainer = document.getElementById('calendar-container');
+            if (calendarContainer) {
+                urlObserver.observe(calendarContainer, { 
+                    childList: true, 
+                    subtree: true 
+                });
+            }
+            
+            // Zusätzlich auf History-Änderungen hören (für pushState/replaceState)
+            const originalPushState = history.pushState;
+            const originalReplaceState = history.replaceState;
+            
+            history.pushState = function() {
+                originalPushState.apply(this, arguments);
+                updateMonthTitle();
+            };
+            
+            history.replaceState = function() {
+                originalReplaceState.apply(this, arguments);
+                updateMonthTitle();
+            };
+            
+            // Auch auf popstate-Events hören (Browser-Zurück/Vorwärts)
+            window.addEventListener('popstate', updateMonthTitle);
+        });
+    </script>
+{% endblock %}

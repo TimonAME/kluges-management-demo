@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Benutzer{% endblock %}
+
+{% block pageTitle %}Benutzer{% endblock %}
+
+{% block body %}
+    <div {{ vue_component('UserProfile', { 'user' :  user, 'initialCategory': category, 'currentUserRole' : app.user.roles[0] is defined ? app.user.roles[0] : null, 'currentUserID' : app.user.id }) }}></div>
+{% endblock %}
+

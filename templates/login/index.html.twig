@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="icon" href="{{ asset('images/icon.svg') }}">
+
+    <!-- Swiper CSS CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body class="bg-first_bg">
+{% if app.user %}
+    <div class="fixed top-0 left-0 w-full bg-first_bg text-center py-2 z-50">
+        Du bist angemeldet als {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}" class="text-blue-500 underline">Logout</a>
+    </div>
+{% endif %}
+
+<!-- Toast-Benachrichtigungen für Kontolöschung -->
+{% if app.request.query.get('deletion_success') == 'true' %}
+    <div id="successToast" class="fixed top-4 right-4 z-50 flex items-center gap-3 p-4 bg-white rounded-lg shadow-lg border-l-4 border-green-500" style="min-width: 300px; max-width: 90vw">
+        <svg class="h-5 w-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+        <span class="flex-1 text-sm text-green-700">
+            Account erfolgreich gelöscht. Alle personenbezogenen Daten wurden anonymisiert.
+        </span>
+        <button onclick="this.parentElement.remove()" class="flex-shrink-0 ml-2 text-gray-400 hover:text-gray-600">
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+    <script>
+        setTimeout(() => {
+            const toast = document.getElementById('successToast');
+            if (toast) toast.remove();
+        }, 5000);
+    </script>
+{% elseif app.request.query.get('deletion_success') == 'false' %}
+    <div id="errorToast" class="fixed top-4 right-4 z-50 flex items-center gap-3 p-4 bg-white rounded-lg shadow-lg border-l-4 border-red-500" style="min-width: 300px; max-width: 90vw">
+        <svg class="h-5 w-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+        <span class="flex-1 text-sm text-red-700">
+            Fehler bei der Kontolöschung. Der Link ist ungültig oder abgelaufen.
+        </span>
+        <button onclick="this.parentElement.remove()" class="flex-shrink-0 ml-2 text-gray-400 hover:text-gray-600">
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+    <script>
+        setTimeout(() => {
+            const toast = document.getElementById('errorToast');
+            if (toast) toast.remove();
+        }, 5000);
+    </script>
+{% endif %}
+
+<div class="h-screen flex justify-center items-center">
+    <div class="w-2/3 lg:w-7/12 h-2/3 flex items-center justify-center shadow-lg rounded-window">
+        <!-- Left side of the login box -->
+        <div class="w-full md:w-1/2 h-full bg-white md:rounded-l-window rounded-window flex flex-col">
+            <div class="w-full flex justify-start ml-8 mt-8">
+                <img src="{{ asset('images/icon.svg') }}" alt="Logo" class="w-12">
+            </div>
+            <div class="flex flex-col items-center justify-center flex-grow -mt-16">
+                <form method="post" class="w-3/4">
+                    <h1 class="text-2xl mb-6 text-center">Login</h1>
+                    <div class="relative z-0 w-full mb-4 group">
+                        <input type="email" value="{{ last_username }}" name="_username" id="email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-main peer" placeholder=" " required autofocus />
+                        <label for="_username" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">E-Mail-Adresse</label>
+                    </div>
+                    <div class="relative z-0 w-full mb-4 group">
+                        <input type="password" name="_password" id="password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-main peer" placeholder=" " required />
+                        <label for="_password" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Passwort</label>
+                    </div>
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                    <div class="flex flex-col items-center">
+                        <button type="submit"
+                                class="w-full bg-main hover:bg-second_accent text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 mb-4">
+                            Login
+                        </button>
+                        {% if error %}
+                            <div class="text-error_text">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %}
+                        <a href="{{ path('forgot_password') }}" class="text-sm text-main hover:underline">Passwort vergessen?</a>
+                        
+                        <!-- LOGIN AS ADMIN -->
+                        <div class="mt-6">
+                            <a href="{{ path('app_quick_login') }}"
+                                    class="w-full bg-main hover:bg-second_accent text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 mb-4">
+                                Login as Admin
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {# TODO: Images noch ein bisschen unresponsive #}
+        <!-- Right side of the login box -->
+        <div class="h-full w-1/2 rounded-r-window bg-white md:block hidden">
+            <!-- Swiper Container -->
+            <div class="swiper mySwiper h-full">
+                <div class="swiper-wrapper">
+                    <!-- Slide 1 -->
+                    <div class="swiper-slide">
+                        <img src="{{ asset('images/slideshow/slide1.jpg') }}" class="h-full w-full object-cover rounded-r-lg" alt="Slide 1">
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="swiper-slide">
+                        <img src="{{ asset('images/slideshow/slide2.jpg') }}" class="h-full w-full object-cover rounded-r-lg" alt="Slide 2">
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="swiper-slide">
+                        <img src="{{ asset('images/slideshow/slide3.jpg') }}" class="h-full w-full object-cover rounded-r-lg" alt="Slide 3">
+                    </div>
+                </div>
+                <!-- Swiper pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+    if (typeof swiper === 'undefined') {
+        const swiper = new Swiper('.mySwiper', {
+            loop: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+        });
+    }
+</script>
+</body>
+</html>

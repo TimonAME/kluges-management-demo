@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit NotificationTag{% endblock %}
+
+{% block body %}
+    <h1>Edit NotificationTag</h1>
+
+    {{ include('notification_tag/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_notification_tag_index') }}">back to list</a>
+
+    {{ include('notification_tag/_delete_form.html.twig') }}
+{% endblock %}

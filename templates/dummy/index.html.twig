@@ -1,0 +1,173 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dummy{% endblock %}
+
+{% block pageTitle %}Dummy{% endblock %}
+
+{# Funktion um die richtigen Farben den Fächern zuzuweisen #}
+{% macro getBackgroundClass(subject) %}
+    {% if subject == 'Mathematik' %}
+        bg-blue-50 text-blue-800 border-blue-200 border
+    {% elseif subject == 'Geschichte' %}
+        bg-yellow-50 text-yellow-800 border-yellow-200 border
+    {% elseif subject == 'Deutsch' %}
+        bg-red-50 text-red-800 border-red-200 border
+    {% elseif subject == 'Englisch' %}
+        bg-green-50 text-green-800 border-green-200 border
+    {% elseif subject == 'Informatik' %}
+        bg-purple-50 text-purple-800 border-purple-200 border
+    {% else %}
+        bg-indigo-50 text-indigo-800 border-indigo-200 border
+    {% endif %}
+{% endmacro %}
+
+{# Dummy Daten #}
+{% set users = [
+    {
+        'name': 'Felix Payer',
+        'email': 'rl-coach@example.com',
+        'profile_picture': 'images/examples/example_profilepic.jfif',
+        'subjects': ['Informatik', 'Englisch'],
+        'last_active': 'Vor 2 Tagen',
+        'added_on': '01.01.2023'
+    },
+    {
+        'name': 'Timon Amesmann',
+        'email': 'ame@me.com',
+        'profile_picture': 'images/examples/example_profilepic2.jpg',
+        'subjects': ['Informatik', 'Englisch', 'Mathematik'],
+        'last_active': 'Vor 5 Stunden',
+        'added_on': '15.02.2023'
+    },
+    {
+        'name': 'Jacob Schrott',
+        'email': 'small@penis.com',
+        'profile_picture': 'images/examples/example_profilepic3.jpg',
+        'subjects': ['Mandarin'],
+        'last_active': 'Vor 17 Jahren',
+        'added_on': '11.02.2000'
+    },
+    {
+        'name': 'Hunor Zakarias',
+        'email': 'yarak@backend.com',
+        'profile_picture': 'images/examples/example_profilepic4.jpg',
+        'subjects': ['Fortnite'],
+        'last_active': 'Vor 1 Minute',
+        'added_on': '11.09.2024'
+    }
+] %}
+
+{# Variablen #}
+{% set numberOfUsers = users|length %}
+{% set category = "Alle Benutzer" %}
+
+{# Inhalt #}
+{% block body %}
+    <!-- TODO: alles in variablen umschreiben -->
+    <!-- Content area -->
+    <div class="flex-grow px-4 pb-4 overflow-auto ">
+        <!-- TODO: padding 8 mit Timon absprechen -->
+        <div class="relative h-[calc(100vh-80px)] bg-window_bg shadow-window px-8 py-4 rounded-xl">
+            <div class="flex justify-between items-center">
+                <!-- Kategorie und Anzahl der Benutzer -->
+                <div>
+                    <span class="font-bold text-2xl mr-2">{{ category }}</span>
+                    <span class="font-semibold text-2xl text-secondary_text">{{ numberOfUsers }}</span>
+                </div>
+                <div class="flex flex-row gap-4">
+                    <!-- Suchleiste -->
+                    <div class="relative w-auto flex flex-row items-center">
+                        <div class="absolute inset-y-0 start-0 flex justify-center items-center ps-3 pointer-events-none">
+                            <svg class="w-4 h-4 stroke-second_accent text-second_accent" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M21.0004 20.9999L16.6504 16.6499" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <input
+                                type="text"
+                                class="block w-full lg:w-80 p-2 ps-10 border-2 border-second_accent rounded focus:border-blue-500 focus:ring-blue-500"
+                                placeholder="Suche ..."
+                        />
+                    </div>
+                    <!-- Filtern -->
+                    <button
+                            type="button"
+                            class="flex flex-row bg-white border-second_accent border-2 items-center py-2 pl-2 pr-4 rounded"
+                    >
+                        <svg class="h-6 w-6 stroke-second_accent stroke-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22 3H2L10 12.46V19L14 21V12.46L22 3Z" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="ml-2 text-second_accent font-semibold">Filtern</span>
+                    </button>
+                    <!-- Neuer Benutzer -->
+                    <button
+                            type="button"
+                            class="flex flex-row bg-second_accent items-center py-2 pl-2 pr-4 rounded"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 stroke-white stroke-2" fill="none" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                        <span class="text-white ml-2 font-semibold">Neuer Benutzer</span>
+                    </button>
+                </div>
+            </div>
+            <!-- Tabelle -->
+            <div class="overflow-auto mt-8">
+                <table class="min-w-full bg-white">
+                    <thead>
+                    <tr>
+                        <th class="py-2 px-4 border-b-2 border-gray-200 text-left">
+                            <input type="checkbox" class="form-checkbox h-4 w-4 text-blue-600">
+                        </th>
+                        <th class="py-2 px-4 border-b-2 border-gray-200 text-left">Benutzer</th>
+                        <th class="py-2 px-4 border-b-2 border-gray-200 text-left">Fächer</th>
+                        <th class="py-2 px-4 border-b-2 border-gray-200 text-left">Zuletzt aktiv</th>
+                        <th class="py-2 px-4 border-b-2 border-gray-200 text-left">Hinzugefügt am</th>
+                        <th class="py-2 px-4 border-b-2 border-gray-200 text-left"></th> <!-- Neue Spalte für das Icon -->
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% import _self as macros %}
+
+                    {% for user in users %}
+                        <tr class="align-middle">
+                            <td class="py-2 px-4 border-b border-gray-200">
+                                <div class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox h-4 w-4 text-blue-600">
+                                </div>
+                            </td>
+                            <td class="py-2 px-4 border-b border-gray-200">
+                                <div class="flex items-center">
+                                    <img src="{{ asset(user.profile_picture) }}" alt="Profilbild" class="h-10 w-10 rounded-full mr-4 object-cover">
+                                    <div>
+                                        <div class="font-semibold">{{ user.name }}</div>
+                                        <div class="text-sm text-gray-600">{{ user.email }}</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="py-2 px-4 border-b border-gray-200">
+                                <div>
+                                    {% for subject in user.subjects %}
+                                        <span class="{{ macros.getBackgroundClass(subject) }} px-3 py-2 rounded-lg text-sm mr-2">{{ subject }}</span>
+                                    {% endfor %}
+                                </div>
+                            </td>
+                            <td class="py-2 px-4 border-b border-gray-200">{{ user.last_active }}</td>
+                            <td class="py-2 px-4 border-b border-gray-200">{{ user.added_on }}</td>
+                            <td class="py-2 border-b border-gray-200 text-right">
+                                <!-- Neue Zelle für das Icon -->
+                                <div class="flex justify-end">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v.01M12 12v.01M12 18v.01" />
+                                    </svg>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

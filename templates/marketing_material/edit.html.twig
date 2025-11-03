@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit MarketingMaterial{% endblock %}
+
+{% block body %}
+    <h1>Edit MarketingMaterial</h1>
+
+    {{ include('marketing_material/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_marketing_material_index') }}">back to list</a>
+
+    {{ include('marketing_material/_delete_form.html.twig') }}
+{% endblock %}

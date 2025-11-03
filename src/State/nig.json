@@ -1,0 +1,217 @@
+[
+  {
+    "0": {
+      "id": 1,
+      "initiator": {
+        "id": 1,
+        "email": "anna.gruber@example.com",
+        "roles": [
+          "ROLE_MANAGEMENT"
+        ],
+        "password": "$2y$13$/ZbFOx6eE20JQzhVa/AseecYfBdOhW01X8YP94iARrGBWg9Kk2E8m",
+        "first_name": "Anna",
+        "last_name": "Gruber",
+        "learning_level": "",
+        "birthday": "2000-02-15T00:00:00+01:00",
+        "workingHours": {
+          "template": [],
+          "individual": []
+        }
+      },
+      "recipient": {
+        "id": 1,
+        "email": "anna.gruber@example.com",
+        "roles": [
+          "ROLE_MANAGEMENT"
+        ],
+        "password": "$2y$13$/ZbFOx6eE20JQzhVa/AseecYfBdOhW01X8YP94iARrGBWg9Kk2E8m",
+        "first_name": "Anna",
+        "last_name": "Gruber",
+        "learning_level": "",
+        "birthday": "2000-02-15T00:00:00+01:00",
+        "workingHours": {
+          "template": [],
+          "individual": []
+        }
+      },
+      "last_message": {
+        "id": 2,
+        "content": "I am fine, thank you!",
+        "created_at": "2025-02-11T14:28:57+01:00"
+      }
+    },
+    "partnerUser": "Anna Gruber"
+  },
+  {
+    "0": {
+      "id": 2,
+      "initiator": {
+        "id": 1,
+        "email": "anna.gruber@example.com",
+        "roles": [
+          "ROLE_MANAGEMENT"
+        ],
+        "password": "$2y$13$/ZbFOx6eE20JQzhVa/AseecYfBdOhW01X8YP94iARrGBWg9Kk2E8m",
+        "first_name": "Anna",
+        "last_name": "Gruber",
+        "learning_level": "",
+        "birthday": "2000-02-15T00:00:00+01:00",
+        "workingHours": {
+          "template": [],
+          "individual": []
+        }
+      },
+      "recipient": {
+        "id": 3,
+        "email": "tom.gruber@example.com",
+        "roles": [
+          "ROLE_LOCATION_MANAGEMENT"
+        ],
+        "password": "$2y$13$5Bmv4heqkzeuroKHRoOxle9u5v/.mqBxqSp1awFZp/.k46ExKSZOO",
+        "first_name": "Tom",
+        "last_name": "Gruber",
+        "learning_level": "",
+        "birthday": "1984-08-26T00:00:00+02:00",
+        "workingHours": {
+          "template": [],
+          "individual": []
+        }
+      },
+      "last_message": {
+        "id": 4,
+        "content": "I am fine, thank you!",
+        "created_at": "2025-02-11T14:28:57+01:00"
+      }
+    },
+    "partnerUser": "Tom Gruber"
+  },
+  {
+    "0": {
+      "id": 3,
+      "initiator": {
+        "id": 1,
+        "email": "anna.gruber@example.com",
+        "roles": [
+          "ROLE_MANAGEMENT"
+        ],
+        "password": "$2y$13$/ZbFOx6eE20JQzhVa/AseecYfBdOhW01X8YP94iARrGBWg9Kk2E8m",
+        "first_name": "Anna",
+        "last_name": "Gruber",
+        "learning_level": "",
+        "birthday": "2000-02-15T00:00:00+01:00",
+        "workingHours": {
+          "template": [],
+          "individual": []
+        }
+      },
+      "recipient": {
+        "id": 12,
+        "email": "sophie.gruber@example.com",
+        "roles": [
+          "ROLE_GUARDIAN"
+        ],
+        "password": "$2y$13$2i3BVoutwvHbdZc824jKieAgCAt.wc2QpJ1X7nHl5gePwwPXq9GR.",
+        "first_name": "Sophie",
+        "last_name": "Gruber",
+        "learning_level": "",
+        "birthday": "2001-01-18T00:00:00+01:00",
+        "workingHours": {
+          "template": [],
+          "individual": []
+        }
+      },
+      "last_message": {
+        "id": 6,
+        "content": "I am fine, thank you!",
+        "created_at": "2025-02-11T14:28:57+01:00"
+      }
+    },
+    "partnerUser": "Sophie Gruber"
+  },
+  {
+    "0": {
+      "id": 4,
+      "initiator": {
+        "id": 1,
+        "email": "anna.gruber@example.com",
+        "roles": [
+          "ROLE_MANAGEMENT"
+        ],
+        "password": "$2y$13$/ZbFOx6eE20JQzhVa/AseecYfBdOhW01X8YP94iARrGBWg9Kk2E8m",
+        "first_name": "Anna",
+        "last_name": "Gruber",
+        "learning_level": "",
+        "birthday": "2000-02-15T00:00:00+01:00",
+        "workingHours": {
+          "template": [],
+          "individual": []
+        }
+      },
+      "recipient": {
+        "id": 34,
+        "email": "marie.leitner@example.com",
+        "roles": [
+          "ROLE_STUDENT"
+        ],
+        "password": "$2y$13$w5vz/P57phJxDs8J3WC/A.APvmiysIESJcWvQ52mA.iQkufPh005q",
+        "first_name": "Marie",
+        "last_name": "Leitner",
+        "learning_level": "Besucht das Gymnasium Kundmanngasse in der 3. Klasse (mein Beileid). Hat Schwierigkeiten in Mathematik und Informatik. Möchte anschließend die HTL-Rennweg besuchen.",
+        "birthday": "2012-07-19T00:00:00+02:00",
+        "workingHours": {
+          "template": [],
+          "individual": []
+        }
+      },
+      "last_message": {
+        "id": 8,
+        "content": "I am fine, thank you!",
+        "created_at": "2025-02-11T14:28:57+01:00"
+      }
+    },
+    "partnerUser": "Marie Leitner"
+  },
+  {
+    "0": {
+      "id": 5,
+      "initiator": {
+        "id": 1,
+        "email": "anna.gruber@example.com",
+        "roles": [
+          "ROLE_MANAGEMENT"
+        ],
+        "password": "$2y$13$/ZbFOx6eE20JQzhVa/AseecYfBdOhW01X8YP94iARrGBWg9Kk2E8m",
+        "first_name": "Anna",
+        "last_name": "Gruber",
+        "learning_level": "",
+        "birthday": "2000-02-15T00:00:00+01:00",
+        "workingHours": {
+          "template": [],
+          "individual": []
+        }
+      },
+      "recipient": {
+        "id": 37,
+        "email": "moritz.pichler@example.com",
+        "roles": [
+          "ROLE_STUDENT"
+        ],
+        "password": "$2y$13$XpALR0BonEjwPjfUv7wVKORcBypdHuv1VkDA/nGQXe0xJSAhf.uJy",
+        "first_name": "Moritz",
+        "last_name": "Pichler",
+        "learning_level": "Besucht das Gymnasium Kundmanngasse in der 3. Klasse (mein Beileid). Hat Schwierigkeiten in Mathematik und Informatik. Möchte anschließend die HTL-Rennweg besuchen.",
+        "birthday": "2013-07-17T00:00:00+02:00",
+        "workingHours": {
+          "template": [],
+          "individual": []
+        }
+      },
+      "last_message": {
+        "id": 10,
+        "content": "I am fine, thank you!",
+        "created_at": "2025-02-11T14:28:57+01:00"
+      }
+    },
+    "partnerUser": "Moritz Pichler"
+  }
+]

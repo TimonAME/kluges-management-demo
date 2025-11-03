@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}NotificationTag index{% endblock %}
+
+{% block body %}
+    <h1>NotificationTag index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Hex_color</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for notification_tag in notification_tags %}
+            <tr>
+                <td>{{ notification_tag.id }}</td>
+                <td>{{ notification_tag.name }}</td>
+                <td>{{ notification_tag.hexColor }}</td>
+                <td>
+                    <a href="{{ path('app_notification_tag_show', {'id': notification_tag.id}) }}">show</a>
+                    <a href="{{ path('app_notification_tag_edit', {'id': notification_tag.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_notification_tag_new') }}">Create new</a>
+{% endblock %}

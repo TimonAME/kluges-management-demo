@@ -1,0 +1,53 @@
+# .github/workflows/developer-deploy.yml
+name: Deploy Dev Environment
+
+on:
+  push:
+    branches:
+      - developer
+  pull_request:
+    branches:
+      - developer
+
+jobs:
+  deploy:
+    runs-on: self-hosted # This must match the label on your self-hosted runner
+    steps:
+      - name: Delete existing code from server
+        run: rm -rf /tmp/dev/kluges-management
+
+      - name: Checkout code
+        run: |
+          git clone git@github.com:KLUGes-Management/kluges-management.git /tmp/dev/kluges-management
+          cd /tmp/dev/kluges-management
+          git checkout ${{ github.sha }}
+
+      - name: Remove old Docker image
+        run: |
+          if [ "$(docker images -q dev-image-kluges-management)" ]; then
+            docker rmi -f dev-image-kluges-management
+          fi
+
+      - name: Build Docker image
+        run: |
+          cd /tmp/dev/kluges-management
+          docker build -t dev-image-kluges-management -f Dockerfile.dev .
+
+      - name: Stop and remove old container
+        run: |
+          if [ "$(docker ps -aq -f name=dev-container-kluges-management)" ]; then
+            docker stop dev-container-kluges-management
+            docker rm dev-container-kluges-management
+          fi
+
+      - name: Run Docker container
+        run: |
+          docker run \
+          -d \
+          --name dev-container-kluges-management \
+          --network=dockernet_klugesmanagement \
+          --label "traefik.enable=true" \
+          --label "traefik.http.routers.dev-container-kluges-management.rule=Host(\`dev.klugesmanagement.at\`)" \
+          --label "traefik.http.routers.dev-container-kluges-management.entrypoints=websecure" \
+          --label "traefik.http.routers.dev-container-kluges-management.tls=true" \
+          dev-image-kluges-management

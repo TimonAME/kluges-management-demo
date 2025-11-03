@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Todo{% endblock %}
+
+{% block pageTitle %}Todo{% endblock %}
+
+{% block body %}
+    {# <div {{ vue_component('ToDos', { 'todos' : todos, 'role' : app.user.roles[0] is defined ? app.user.roles[0] : null }) }}></div> #}
+    <div {{ vue_component('Todo', { 'todos' : todos}) }}></div>
+{% endblock %}

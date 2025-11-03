@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Benutzerliste{% endblock %}
+
+{% block pageTitle %}Benutzerliste{% endblock %}
+
+{% block body %}
+    <div {{ vue_component('UserList', { 'users' : users, 'role' : app.user.roles[0] is defined ? app.user.roles[0] : null }) }}></div>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block pageTitle %}
+    Arbeitszeiten eintragen
+{% endblock %}
+
+{% block body %}
+    <div {{ vue_component('Workhours', { 'user_id': user_id }) }}></div>
+{% endblock %}

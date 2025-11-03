@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}IllnessReport index{% endblock %}
+
+{% block body %}
+    <h1>IllnessReport index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Reason</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for illness_report in illness_reports %}
+            <tr>
+                <td>{{ illness_report.id }}</td>
+                <td>{{ illness_report.date ? illness_report.date|date('Y-m-d') : '' }}</td>
+                <td>{{ illness_report.reason }}</td>
+                <td>
+                    <a href="{{ path('app_illness_report_show', {'id': illness_report.id}) }}">show</a>
+                    <a href="{{ path('app_illness_report_edit', {'id': illness_report.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_illness_report_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}NotificationTag{% endblock %}
+
+{% block body %}
+    <h1>NotificationTag</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ notification_tag.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ notification_tag.name }}</td>
+            </tr>
+            <tr>
+                <th>Hex_color</th>
+                <td>{{ notification_tag.hexColor }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_notification_tag_index') }}">back to list</a>
+
+    <a href="{{ path('app_notification_tag_edit', {'id': notification_tag.id}) }}">edit</a>
+
+    {{ include('notification_tag/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,15 @@
+services:
+  database:
+    image: mysql:8.0.32
+    environment:
+      MYSQL_DATABASE: klugesmanagement_sql
+      MYSQL_USER: klugesmanagement_sql_admin
+      MYSQL_PASSWORD: QKVSZIPVW82534
+      MYSQL_ROOT_PASSWORD: GYPNWDAY19612
+    ports:
+      - "3306:3306"
+    volumes:
+      - database_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+volumes:
+  database_data:

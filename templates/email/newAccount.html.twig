@@ -1,0 +1,109 @@
+{% extends 'email/baseEmail.html.twig' %}
+
+{% block title %}Account Erstellung{% endblock %}
+
+{% block main_content %}
+  <style>
+    .info-box {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 16px;
+      margin: 16px 0;
+      border-radius: 4px;
+      background-color: rgba(209, 156, 255, 0.2);
+      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+    .info-box:hover {
+      background-color: rgba(209, 156, 255, 0.4);
+    }
+
+    .info-box div {
+      margin-bottom: 8px;
+    }
+
+    .info-box div:last-child {
+      margin-bottom: 0;
+    }
+
+    .info-box span {
+      display: block;
+      font-weight: 600;
+      color: #25282b;
+    }
+
+    .info-box p {
+      margin: 0;
+      color: #5f6368;
+    }
+
+    .copied {
+      font-size: 12px;
+      color: #439f6e;
+      margin-left: 8px;
+    }
+
+    .button {
+      padding: 12px 24px;
+      width: 100%;
+      border-radius: 0.25rem;
+      font-weight: 600;
+      color: #ffffff;
+      background-color: #9900fe;
+      opacity: 0.8;
+      transition: all 0.2s;
+
+      display: inline-block;
+    }
+
+    .button:hover {
+      opacity: 1;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* hover:shadow-xl */
+    }
+  </style>
+
+  <p>Ihre Registrierung wurde verarbeitet. Verwenden Sie bitte die folgenden Anmeldedaten, um sich bei unserer Plattform anzumelden.</p>
+
+  <br>
+
+  <div>
+    <div class="info-box" onclick="copyToClipboard({{ email.to[0].address }}, this)">
+      <span>E-Mail</span>
+      <p>{{ email.to[0].address }}</p>
+    </div>
+    <div class="info-box" onclick="copyToClipboard({{ password }}, this)">
+      <span>Passwort</span>
+      <p>{{ password }}</p>
+    </div>
+  </div>
+  <p style="font-size: 12px; color: #5f6368;">Das Passwort wurde automatisch generiert. Bei Ihrer ersten Anmeldung werden Sie dazu aufgefordert, es zu ändern!</p>
+
+  <br>
+
+  <div style="text-align: center; margin: 16px 0;">
+    <a href="https://www.klugesmanagement.at/login">
+      <button class="button">Zur Anmeldung</button>
+    </a>
+  </div>
+
+  <p>Wir freuen uns darauf, Sie bald auf unserer Plattform begrüßen zu dürfen!</p>
+
+  <script>
+    function copyToClipboard(text, element) {
+      navigator.clipboard.writeText(text).then(function() {
+        if (!element.querySelector('.copied')) {
+          let copiedText = document.createElement('span');
+          copiedText.className = 'copied';
+          copiedText.innerText = 'Copied';
+          element.appendChild(copiedText);
+          setTimeout(() => {
+            element.removeChild(copiedText);
+          }, 2000);
+        }
+      }, function(err) {
+        console.error('Could not copy text: ', err);
+      });
+    }
+  </script>
+{% endblock %}

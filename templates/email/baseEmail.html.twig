@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="icon" href="{{ asset('images/icon.svg') }}">
+
+    <!-- Raleway font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    <style>
+        body {
+            font-family: 'Raleway', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f5fb;
+            color: #25282b;
+        }
+
+        .content {
+            width: 100%;
+            max-width: 600px;
+            margin: 8px auto 0;
+            padding: 16px;
+            background-color: #ffffff;
+            border-radius: 4px;
+            box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.1);
+        }
+        .content h1 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #25282b;
+        }
+        .content p {
+            font-size: 16px;
+            font-weight: 200;
+            color: #25282b;
+        }
+        .banner {
+            width: 100%;
+            max-width: 600px;
+            margin: 8px auto 0;
+
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+        }
+        .banner img {
+            width: 100%;
+            max-width: 600px;
+            margin-right: 8px;
+            border-radius: 4px;
+            box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.1);
+        }
+        .banner p {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0;
+            color: #9900fe;
+        }
+
+        .footer {
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /*border-radius: 4px;
+            box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.1);*/
+            word-break: break-all;
+        }
+        .footer p{
+            font-size: 12px;
+            color: #5f6368;
+        }
+        .footer a{
+            font-size: 12px;
+            color: #d19cff;
+        }
+        .footer a:hover{
+            font-size: 12px;
+            color: #bb64ff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Banner -->
+    <div class="banner">
+        <a href="https://www.klugesmanagement.at/">
+            <img src="../../images/banner/banner1.jpg" alt="Kluges Management Banner">
+        </a>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="content">
+        <h1>Hallo {{ username }}</h1>
+        {% block main_content %}{% endblock %}
+    </div>
+
+    <!-- Banner -->
+    <div class="banner">
+        <a href="https://www.klugesmanagement.at/">
+            <img src="../../images/banner/banner2.jpg" alt="Kluges Management Banner">
+        </a>
+    </div>
+
+    <div class="footer">
+        <p>Dies ist ein automatisch generiertes E-Mail des Nachhilfeinstituts [...] . Bitte antworten Sie nicht auf diese Nachricht und wenden Sie sich bei Fragen zum Inhalt direkt an den Versender.</p>
+        <br>
+        <p>
+            <a href="https://www.klugesmanagement.at/">Kluges Management</a>, Max Mustermann Straße, 1030 Wien,
+            <a href="tel:067763792074">0666 123456 789</a>,
+            <a href="mailto:office@klugesmanagement.at">office@klugesmanagement.at</a>
+        </p>
+        <p>Keine E-Mails mehr erhalten: <a href="#">Abmelden</a></p>
+    </div>
+</body>
+</html>

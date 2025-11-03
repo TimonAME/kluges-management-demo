@@ -1,0 +1,67 @@
+{% extends 'email/baseEmail.html.twig' %}
+
+{% block title %}Datenlöschungsantrag Bestätigung{% endblock %}
+
+{% block main_content %}
+    <style>
+        .info-box {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 16px;
+            margin: 16px 0;
+            border-radius: 4px;
+            background-color: rgba(209, 156, 255, 0.2);
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-box div {
+            margin-bottom: 8px;
+        }
+
+        .info-box div:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-box span {
+            display: block;
+            font-weight: 600;
+            color: #25282b;
+        }
+
+        .info-box p {
+            margin: 0;
+            color: #5f6368;
+        }
+
+        .button {
+            padding: 12px 24px;
+            width: 100%;
+            border-radius: 0.25rem;
+            font-weight: 600;
+            color: #ffffff;
+            background-color: #9900fe;
+            opacity: 0.8;
+            transition: all 0.2s;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .button:hover {
+            opacity: 1;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+
+    <p>Wir haben Ihren Antrag auf Datenlöschung erhalten. Bitte bestätigen Sie Ihren Antrag, indem Sie auf den untenstehenden Button klicken:</p>
+
+    <br>
+
+    <div style="text-align: center; margin: 16px 0;">
+        <a href="https://www.klugesmanagement.at/delete/{{ deletionHash }}" class="button">Antrag bestätigen</a>
+    </div>
+
+    <p>Falls Sie diesen Antrag nicht gestellt haben, ignorieren Sie bitte diese E-Mail.</p>
+
+    <p>Mit freundlichen Grüßen</p>
+{% endblock %}

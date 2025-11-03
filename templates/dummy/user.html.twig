@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Benutzer{% endblock %}
+
+{% block pageTitle %}Benutzer{% endblock %}
+
+{% block body %}
+    <div {{ vue_component('UserProfile', { 'user_id' : user_id }) }}></div>
+{% endblock %}
+
